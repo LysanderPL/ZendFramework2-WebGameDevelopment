@@ -4,7 +4,7 @@ namespace Application\Helper\Tools;
  * Class Data
  * @package Application\Helper\Tools
  */
-class Data
+class Date
 {
     /**
      * @return \DateTime
