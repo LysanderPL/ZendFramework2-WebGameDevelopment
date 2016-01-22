@@ -6,11 +6,15 @@
  * Time: 19:46
  */
 
-namespace Application\Helper\Services;
+namespace Library\Helper\Services;
 
 
 use Zend\Mvc\Controller\AbstractActionController;
 
+/**
+ * Class Controller
+ * @package Application\Helper\Services
+ */
 class Controller extends AbstractActionController
 {
     /**

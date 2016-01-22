@@ -1,5 +1,5 @@
 <?php
-namespace Application\Helper\Tools;
+namespace Library\Helper\Tools;
 /**
  * Class Data
  * @package Application\Helper\Tools

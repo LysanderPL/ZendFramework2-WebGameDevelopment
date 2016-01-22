@@ -62,16 +62,6 @@ return array(
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
         ),
     ),
-    'translator' => array(
-        'locale' => 'en_US',
-        'translation_file_patterns' => array(
-            array(
-                'type' => 'gettext',
-                'base_dir' => __DIR__ . '/../language',
-                'pattern' => '%s.mo',
-            ),
-        ),
-    ),
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => Controller\IndexController::class
@@ -98,20 +88,5 @@ return array(
         'router' => array(
             'routes' => array(),
         ),
-    ),
-    'doctrine' => array(
-        'driver' => array(
-            __NAMESPACE__ . '_driver' => array(
-                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
-                'cache' => 'array',
-                'paths' => array(__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity',  // Define path of entities
-                )
-            ),
-            'orm_default' => array(
-                'drivers' => array(
-                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'  // Define namespace of entities
-                )
-            )
-        )
     ),
 );
