@@ -11,6 +11,7 @@ return array(
         'ZendDeveloperTools',
         'DoctrineModule',
         'DoctrineORMModule',
+        'Library',
         'Application',
     ),
 

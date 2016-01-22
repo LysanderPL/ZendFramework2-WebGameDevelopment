@@ -12,5 +12,19 @@
  */
 
 return array(
-    // ...
+    'doctrine' => array(
+        'driver' => array(
+            __NAMESPACE__ . '_driver' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array('/var/www2/module/Library/src/Db/Entity',  // Define path of entities
+                )
+            ),
+            'orm_default' => array(
+                'drivers' => array(
+                    'Library\Db\Entity' => __NAMESPACE__ . '_driver'  // Define namespace of entities
+                )
+            )
+        )
+    )
 );
