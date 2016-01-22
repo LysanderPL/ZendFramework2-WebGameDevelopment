@@ -11,7 +11,6 @@ return array(
         'ZendDeveloperTools',
         'DoctrineModule',
         'DoctrineORMModule',
-        'BjyProfiler',
         'Application',
     ),
 
