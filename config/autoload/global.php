@@ -25,6 +25,15 @@ return array(
                     'Library\Db\Entity' => __NAMESPACE__ . '_driver'  // Define namespace of entities
                 )
             )
-        )
-    )
+        ),
+        'authentication' => array(
+            'orm_default' => array(
+                'objectManager' => 'Doctrine\ORM\EntityManager',
+                'identityClass' => '\Library\Db\Entity\UserTable\User',
+                'identityProperty' => 'login',
+                'credentialProperty' => 'password',
+
+                ),
+        ),
+    ),
 );
