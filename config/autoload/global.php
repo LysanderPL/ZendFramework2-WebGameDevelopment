@@ -32,7 +32,7 @@ return array(
                 'identityClass' => '\Library\Db\Entity\UserTable\User',
                 'identityProperty' => 'login',
                 'credentialProperty' => 'password',
-
+                'credential_callable' => 'Library\Db\Entity\UserTable\User::checkPassword'
                 ),
         ),
     ),
