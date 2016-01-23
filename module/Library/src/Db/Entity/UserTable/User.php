@@ -13,14 +13,17 @@ class User
      */
     protected $id;
 
-    /** @ORM\Column(type="string") */
+    /** @ORM\Column(type="integer", length=1) */
+    protected $status;
+
+    /** @ORM\Column(type="string", length=20, unique=true) */
     protected $login;
+
+    /** @ORM\Column(type="string", length=20, unique=true) */
+    protected $email;
 
     /** @ORM\Column(type="string") */
     protected $password;
-
-    /** @ORM\Column(type="string") */
-    protected $email;
 
     /** @ORM\Column(type="datetime") */
     protected $date_add;
@@ -37,6 +40,22 @@ class User
      * @return int
      */
     public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $int
+     */
+    public function setStatus(int $int)
+    {
+        $this->id = $int;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStatus()
     {
         return $this->id;
     }
@@ -62,7 +81,7 @@ class User
      */
     public function setPassword(String $password)
     {
-        $this->password = $password;
+        $this->password = md5($password);
     }
 
     /**
@@ -71,6 +90,17 @@ class User
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * @desc TODO more logic etc..
+     * @param User $login
+     * @param $password
+     * @return bool
+     */
+    public static function checkPassword(User $login, $password)
+    {
+        return ($login->getPassword() == $password);
     }
 
     /**
