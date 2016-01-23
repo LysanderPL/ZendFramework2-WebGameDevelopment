@@ -17,11 +17,12 @@
     "phpspec/phpspec": "~2.0"
   },
   "config": {
-    "bin-dir": "bin"
+    "bin-dir": "vendor/bin"
   },
   "autoload": {
     "psr-0": {
-      "": "module/Application/src"
+      "1": "module/Application/src",
+      "2": "module/Library/src"
     }
   }
 }
