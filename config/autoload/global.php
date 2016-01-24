@@ -29,10 +29,10 @@ return array(
         'authentication' => array(
             'orm_default' => array(
                 'objectManager' => 'Doctrine\ORM\EntityManager',
-                'identityClass' => '\Library\Db\Entity\UserTable\User',
+                'identityClass' => '\Library\Db\Entity\User',
                 'identityProperty' => 'login',
                 'credentialProperty' => 'password',
-                'credential_callable' => 'Library\Db\Entity\UserTable\User::checkPassword'
+                'credential_callable' => 'Library\Db\Entity\User::checkPassword'
                 ),
         ),
     ),
