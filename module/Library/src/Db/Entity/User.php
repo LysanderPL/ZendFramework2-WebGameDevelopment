@@ -1,5 +1,5 @@
 <?php
-namespace Library\Db\Entity\UserTable;
+namespace Library\Db\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
