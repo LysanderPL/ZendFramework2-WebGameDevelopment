@@ -89,4 +89,9 @@ return array(
             'routes' => array(),
         ),
     ),
+    'controller_plugins' => array(
+        'invokables' => array(
+            'Acl' => '\Library\Helper\Services\Acl',
+        )
+    ),
 );

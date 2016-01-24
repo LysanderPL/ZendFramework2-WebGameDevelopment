@@ -21,34 +21,30 @@ class IndexController extends Controller
         return new ViewModel();
     }
 
-
     public function loginAction()
     {
-
-        /**
-         * @var $authService \Zend\Authentication\AuthenticationService
-         * @var $adapter \DoctrineModule\Authentication\Adapter\ObjectRepository
-         */
-
-        // If you used another name for the authentication service, change it here
-        $authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
-
-        $adapter = $authService->getAdapter();
-        $adapter->setIdentity('Adam');
-        $adapter->setCredential(md5('hehe'));
-        $authResult = $authService->authenticate();
+        $this->getUserAdapter()->setIdentity('Adam');
+        $this->getUserAdapter()->setCredential(md5('hehe'));
+        $authResult = $this->getAuthService()->authenticate();
 
         if ($authResult->isValid()) {
-            echo 'logged<br>';
-            echo $authResult->getIdentity()->getLogin();
-//            return $this->redirect()->toRoute('home');
+            $this->writeSession($authResult->getIdentity());
+            $this->getAclSessionContainer()->role = 'user';
+            return $this->redirect()->toRoute();
         } else {
-            echo 'smfn is going wrong';
         }
 
         return new ViewModel(array(
             'error' => 'Your authentication credentials are not valid',
         ));
+
+    }
+
+    public function logoutAction()
+    {
+        $this->getAuthService()->clearIdentity();
+        $this->getAclSessionContainer()->role = 'guest';
+        return $this->redirect()->toRoute();
 
     }
 

@@ -17,8 +17,11 @@ class Module
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager = $e->getApplication()->getEventManager();
+        $eventManager->attach('route', array($this, 'loadConfiguration'), 2);
+
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+
     }
 
     public function getConfig()
@@ -46,5 +49,24 @@ class Module
                 }
             )
         );
+    }
+
+    public function loadConfiguration(MvcEvent $e)
+    {
+        $application = $e->getApplication();
+        $sm = $application->getServiceManager();
+        $sharedManager = $application->getEventManager()->getSharedManager();
+
+        $router = $sm->get('router');
+        $request = $sm->get('request');
+
+        $matchedRoute = $router->match($request);
+        if (null !== $matchedRoute) {
+            $sharedManager->attach('Zend\Mvc\Controller\AbstractActionController', 'dispatch',
+                function ($e) use ($sm) {
+                    $sm->get('ControllerPluginManager')->get('Acl')->doAuthorization($e);
+                }, 2
+            );
+        }
     }
 }

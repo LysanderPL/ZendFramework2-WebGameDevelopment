@@ -10,6 +10,7 @@ namespace Library\Helper\Services;
 
 use Library\Db\Entity\UserTable\User;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Session\Container as SessionContainer;
 
 /**
  * Class Controller
@@ -21,8 +22,24 @@ class Controller extends AbstractActionController
      * @var $authService \Zend\Authentication\AuthenticationService
      */
     private $_authService;
+    /**
+     * @var $sesscontainer \Zend\Session\Container
+     */
+    private $sesscontainer;
 
     /**
+     * @return SessionContainer
+     */
+    protected function getAclSessionContainer()
+    {
+        if (!$this->sesscontainer) {
+            $this->sesscontainer = new SessionContainer('AclAccess');
+        }
+        return $this->sesscontainer;
+    }
+
+    /**
+     * @desc Returns a Entity Manager, by which we can access a Doctrine models...
      * @return \Doctrine\ORM\EntityManager
      */
     protected function getEntityManager()
@@ -35,7 +52,7 @@ class Controller extends AbstractActionController
      */
     protected function getAuthService()
     {
-        if (empty($this->_authService)) {
+        if (!$this->_authService) {
             $this->_authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
         }
 
@@ -47,7 +64,7 @@ class Controller extends AbstractActionController
      */
     protected function getUserAdapter()
     {
-        if (empty($this->_authService)) {
+        if (!$this->_authService) {
             $this->getAuthService();
         }
 
