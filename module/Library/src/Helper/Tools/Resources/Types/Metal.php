@@ -9,6 +9,7 @@
 namespace Library\Helper\Tools\Resources\Types;
 
 
+use Doctrine\ORM\EntityManager;
 use Library\Db\Entity\Planet;
 use Library\Helper\Tools\Resources\ResourcesAbstract\Resources;
 
@@ -23,7 +24,7 @@ class Metal extends Resources
      * @param Planet $oPlanetEntity
      * @param $oEntityManager
      */
-    public function __construct(Planet $oPlanetEntity, $oEntityManager)
+    public function __construct(Planet $oPlanetEntity, EntityManager $oEntityManager)
     {
         parent::__construct($oPlanetEntity, $oEntityManager);
         $this->setResourceStorage($this->getPlanetDbInstance()->getPlanetMetalStorage());
@@ -38,19 +39,24 @@ class Metal extends Resources
      */
     public function updateResourceOnPlanet()
     {
-        $counted = $this->countResource();
-        var_dump($counted);
-
-        $this->getPlanetDbInstance()->setPlanetMetalStorage($counted);
-        $this->__savePlanetState();
+        $iCounted = $this->countResource();
+        var_dump($iCounted);
+        if ($iCounted >= 1) {
+            $iCounted = $this->getResourceCount() + $iCounted;
+            if ($this->getResourceMaxStorage() >= $iCounted) {
+                $this->getPlanetDbInstance()->setPlanetMetalStorage($iCounted);
+            } else {
+                $this->getPlanetDbInstance()->setPlanetMetalStorage($this->getResourceMaxStorage());
+            }
+            $this->getPlanetDbInstance()->setPlanetLastResourceUpdate($this->TIMESTAMP);
+            $this->__savePlanetState();
+        }
     }
 
     public function removeMetalFromStorage(int $minusValue)
     {
         if ($this->getResourceCount() >= $minusValue) {
             $this->setResourceStorage($this->getResourceCount() - $minusValue);
-            return true;
         }
-        return false;
     }
 }

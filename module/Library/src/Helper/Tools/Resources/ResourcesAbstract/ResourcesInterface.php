@@ -8,6 +8,7 @@
 
 namespace Library\Helper\Tools\Resources\ResourcesAbstract;
 
+use Doctrine\ORM\EntityManager;
 use Library\Db\Entity\Planet;
 
 /**
@@ -21,7 +22,7 @@ interface ResourcesInterface
      * @param Planet $oPlanetEntity
      * @param $oEntityManager
      */
-    public function __construct(Planet $oPlanetEntity, $oEntityManager);
+    public function __construct(Planet $oPlanetEntity, EntityManager $oEntityManager);
 
     /**
      * @param int $int

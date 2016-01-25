@@ -9,17 +9,33 @@
 namespace Library\Helper\Tools\Resources;
 
 
+use Doctrine\ORM\EntityManager;
 use Library\Db\Entity\Planet;
 use Library\Helper\Tools\Resources\Types\Metal;
 
+/**
+ * Class Factory
+ * @package Library\Helper\Tools\Resources
+ */
 class Factory
 {
+    /**
+     * @var EntityManager
+     */
     private $_oEntityManager;
+    /**
+     * @var Planet
+     */
     private $_oPlanetEntity;
 
-    public function __construct(Planet $oPlanetEntity, $re)
+    /**
+     * Factory constructor.
+     * @param Planet $oPlanetEntity
+     * @param EntityManager $oEntityManager
+     */
+    public function __construct(Planet $oPlanetEntity,  $oEntityManager)
     {
-        $this->_oEntityManager = $re;
+        $this->_oEntityManager = $oEntityManager;
         $this->_oPlanetEntity = $oPlanetEntity;
     }
 

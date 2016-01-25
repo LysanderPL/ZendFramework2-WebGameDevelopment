@@ -8,6 +8,7 @@
 
 namespace Library\Helper\Tools\Resources\ResourcesAbstract;
 
+use Doctrine\ORM\EntityManager;
 use Library\Db\Entity\Planet;
 
 /**
@@ -37,7 +38,7 @@ abstract class Resources implements ResourcesInterface
      */
     private $_oEntityManager;
     /**
-     * @var TODO
+     * @var $TIMESTAMP int
      */
     protected $TIMESTAMP;
 
@@ -47,11 +48,11 @@ abstract class Resources implements ResourcesInterface
      * @param $oEntityManager
      * @throws \Exception
      */
-    public function __construct(Planet $oPlanetEntity, $oEntityManager)
+    public function __construct(Planet $oPlanetEntity, EntityManager $oEntityManager)
     {
         $this->setEntityManager($oEntityManager);
         $this->setPlanetDbInstance($oPlanetEntity);
-        $this->TIMESTAMP = $_SERVER['REQUEST_TIME'];
+        $this->TIMESTAMP = intval($_SERVER['REQUEST_TIME']);
     }
 
     /**
@@ -148,16 +149,20 @@ abstract class Resources implements ResourcesInterface
     }
 
     /**
-     * @return float
+     * @return int
      * @throws \Exception
      */
     public final function countResource()
     {
-        $timeDiff = intval($this->TIMESTAMP) - $this->getPlanetDbInstance()->getPlanetLastResourceUpdate();
-        $this->getPlanetDbInstance()->setPlanetLastResourceUpdate(intval($this->TIMESTAMP));
-        $countedResources = floatval($this->getResourceCount() + ($timeDiff * ($this->getResourcePerHour() / 2700)));
+        $timeDiff = $this->TIMESTAMP - $this->getPlanetDbInstance()->getPlanetLastResourceUpdate();
+        $countedResources = intval($this->getResourcePerHour() * $timeDiff / 3600);
 
         return $countedResources;
+    }
+
+    public final function getMultiplier()
+    {
+//TODO
     }
 
     /**
