@@ -74,14 +74,6 @@ class Planet
     protected $planet_name;
 
     /**
-     * @param int $int
-     */
-    public function setId(int $int)
-    {
-        $this->id = $int;
-    }
-
-    /**
      * @return int
      */
     public function getId()
@@ -90,11 +82,11 @@ class Planet
     }
 
     /**
-     * @param int $int
+     * @param int $id
      */
-    public function setUserId(int $int)
+    public function setId($id)
     {
-        $this->user_id = $int;
+        $this->id = $id;
     }
 
     /**
@@ -106,27 +98,107 @@ class Planet
     }
 
     /**
-     * @param int $int
+     * @param int $user_id
      */
-    public function setPlanetMetalStorage(int $int)
+    public function setUserId($user_id)
     {
-        $this->planet_metal_storage = $int;
+        $this->user_id = $user_id;
     }
 
     /**
      * @return int
      */
-    public function getPlanetMetalStorage()
+    public function getPlanetFreeSpace()
     {
-        return $this->planet_metal_storage;
+        return $this->planet_free_space;
     }
 
     /**
-     * @param int $int
+     * @param int $planet_free_space
      */
-    public function setPlanetMetalPerHour(int $int)
+    public function setPlanetFreeSpace($planet_free_space)
     {
-        $this->planet_metal_per_hour = $int;
+        $this->planet_free_space = $planet_free_space;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPlanetMaxSpace()
+    {
+        return $this->planet_max_space;
+    }
+
+    /**
+     * @param int $planet_max_space
+     */
+    public function setPlanetMaxSpace($planet_max_space)
+    {
+        $this->planet_max_space = $planet_max_space;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPlanetPopulation()
+    {
+        return $this->planet_population;
+    }
+
+    /**
+     * @param int $planet_population
+     */
+    public function setPlanetPopulation($planet_population)
+    {
+        $this->planet_population = $planet_population;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPlanetLastResourceUpdate()
+    {
+        return $this->planet_last_resource_update;
+    }
+
+    /**
+     * @param int $planet_last_resource_update
+     */
+    public function setPlanetLastResourceUpdate($planet_last_resource_update)
+    {
+        $this->planet_last_resource_update = $planet_last_resource_update;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPlanetSize()
+    {
+        return $this->planet_size;
+    }
+
+    /**
+     * @param int $planet_size
+     */
+    public function setPlanetSize($planet_size)
+    {
+        $this->planet_size = $planet_size;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPlanetMaxPopulation()
+    {
+        return $this->planet_max_population;
+    }
+
+    /**
+     * @param int $planet_max_population
+     */
+    public function setPlanetMaxPopulation($planet_max_population)
+    {
+        $this->planet_max_population = $planet_max_population;
     }
 
     /**
@@ -138,11 +210,11 @@ class Planet
     }
 
     /**
-     * @param int $int
+     * @param int $planet_metal_per_hour
      */
-    public function setPlanetMetalMaxStorage(int $int)
+    public function setPlanetMetalPerHour($planet_metal_per_hour)
     {
-        $this->planet_metal_max_storage = $int;
+        $this->planet_metal_per_hour = $planet_metal_per_hour;
     }
 
     /**
@@ -154,19 +226,76 @@ class Planet
     }
 
     /**
-     * @param int $int
+     * @param int $planet_metal_max_storage
      */
-    public function setPlanetLastResourceUpdate(int $int)
+    public function setPlanetMetalMaxStorage($planet_metal_max_storage)
     {
-        $this->planet_last_resource_update = $int;
+        $this->planet_metal_max_storage = $planet_metal_max_storage;
     }
 
     /**
      * @return int
      */
-    public function getPlanetLastResourceUpdate()
+    public function getPlanetClass()
     {
-        return $this->planet_last_resource_update;
+        return $this->planet_class;
     }
+
+    /**
+     * @param int $planet_class
+     */
+    public function setPlanetClass($planet_class)
+    {
+        $this->planet_class = $planet_class;
+    }
+
+    /**
+     * @return String
+     */
+    public function getPlanetName()
+    {
+        return $this->planet_name;
+    }
+
+    /**
+     * @param String $planet_name
+     */
+    public function setPlanetName($planet_name)
+    {
+        $this->planet_name = $planet_name;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPlanetPollution()
+    {
+        return $this->planet_pollution;
+    }
+
+    /**
+     * @param int $planet_pollution
+     */
+    public function setPlanetPollution($planet_pollution)
+    {
+        $this->planet_pollution = $planet_pollution;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPlanetMetalStorage()
+    {
+        return $this->planet_metal_storage;
+    }
+
+    /**
+     * @param int $planet_metal_storage
+     */
+    public function setPlanetMetalStorage($planet_metal_storage)
+    {
+        $this->planet_metal_storage = $planet_metal_storage;
+    }
+
 
 }
