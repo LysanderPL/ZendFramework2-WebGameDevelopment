@@ -17,7 +17,7 @@ return array(
             __NAMESPACE__ . '_driver' => array(
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
-                'paths' => array('/var/www2/module/Library/src/Db/Entity',  // Define path of entities
+                'paths' => array(__DIR__.'/../../module/Library/src/Db/Entity',  // Define path of entities
                 )
             ),
             'orm_default' => array(
